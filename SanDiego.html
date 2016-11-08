@@ -1,16 +1,18 @@
 <html>
-<head><title>Leaflet.js Essentials</title>
+<head><title>San Diego Homes - Median Year Built</title>
 <link rel="stylesheet" href="leaflet.css" />
 </head>
 <body>
 <script src="leaflet.js"></script>
 <script src="SanDiego.js"></script>
+<style>#map { width: 720px; height: 600px; }
+.legend { text-align: left; line-height: 18px; color: #555; } .legend i { width: 18px; height: 18px; float: left; margin-right: 8px; opacity: 0.9; }</style>
 <div id="map" style="width: 720px; height: 600px"></div>
 <script>
 var map = L.map('map', 
 {
-center: [32.89878, -117.17587],
-zoom: 10
+center: [32.78078, -117.17587],
+zoom: 12
 });
 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(map);
 
@@ -41,6 +43,33 @@ L.geoJson(geojson, {
     layer.bindPopup(feature.properties.TRACTCE + feature.properties.NAME);
 	}
 }).addTo(map);
+
+map.attributionControl.addAttribution('Housing data &copy; <a href="http://census.gov/">US Census Bureau</a>');
+
+	var legend = L.control({position: 'bottomright'});
+
+	legend.onAdd = function (map) {
+
+		var div = L.DomUtil.create('div', 'info legend'),
+			grades = [1939.0, 1940.0, 1950.0, 1960.0, 1970.0, 1980.0, 1990.0],
+			labels = [],
+			from, to;
+
+		for (var i = 0; i < grades.length; i++) {
+			from = grades[i];
+			to = grades[i + 1];
+
+			labels.push(
+				'<i style="background:' + color(from + 1) + '"></i> ' +
+				from + (to ? '&ndash;' + to : '+'));
+		}
+
+		div.innerHTML = labels.join('<br>');
+		return div;
+	};
+
+	legend.addTo(map);
+
 
 </script>
 </body>
