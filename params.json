@@ -1,6 +1,6 @@
 {
   "name": "Homesyearbuilt",
   "tagline": "Age of homes maps using Leaflet and US Census Bureau data",
-  "body": "San Diego area showing median year built of homes by Census Block Group.",
+  "body": "San Diego area showing median year built of homes by Census Block Group. Darker areas in this choropleth map indicate neighborhoods likely to contain older homes.  The data is from the 2014 American Community Survey.\r\n\r\n[Click Here](SanDiego.html) to see the map.\r\n",
   "note": "Don't delete this file! It's used internally to help with page regeneration."
 }
