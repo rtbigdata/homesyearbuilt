@@ -1,0 +1,6 @@
+{
+  "name": "Homesyearbuilt",
+  "tagline": "Age of homes maps using Leaflet and US Census Bureau data",
+  "body": "San Diego area showing median year built of homes by Census Block Group.",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
