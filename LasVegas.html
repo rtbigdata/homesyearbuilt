@@ -1,0 +1,47 @@
+<html>
+<head><title>Leaflet.js Essentials</title>
+<link rel="stylesheet" href="leaflet.css" />
+</head>
+<body>
+<script src="leaflet.js"></script>
+<script src="LasVegas.js"></script>
+<div id="map" style="width: 640px; height: 540px"></div>
+<script>
+var map = L.map('map', 
+{
+center: [36.14878, -115.17587],
+zoom: 12
+});
+L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(map);
+
+function color(x) {
+    return x >= 2000.0 ? '#fee8c8' :
+           x >= 1990.0 ? '#fdd49e' :
+           x >= 1980.0 ? '#fdbb84' :
+           x >= 1970.0 ? '#fc8d59' :
+           x >= 1960.0 ? '#ef6548' :
+           x >= 1950.0 ? '#d7301f' :
+           x >= 1939.0 ? '#990000' :'#ffffff';              
+}
+
+function myStyle(feature) {
+    return {
+        fillColor: color(feature.properties.MEDIANYEARBUILT),
+        weight: 1,
+        opacity: 0.15,
+		color: 'white',
+		fillOpacity: 0.65
+    };
+}
+
+var geoJsonLayer = L.geoJson(geojson, {style: myStyle}).addTo(map);
+
+L.geoJson(geojson, {
+  onEachFeature: function(feature,layer) {
+    layer.bindPopup(feature.properties.TRACTCE + feature.properties.NAME);
+	}
+}).addTo(map);
+
+</script>
+</body>
+</html>
