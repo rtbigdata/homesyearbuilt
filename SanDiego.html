@@ -6,12 +6,12 @@
 <script src="leaflet.js"></script>
 <script src="SanDiego.js"></script>
 <style>#map { width: 720px; height: 600px; }
-.legend { text-align: left; line-height: 18px; color: #555; } .legend i { width: 18px; height: 18px; float: left; margin-right: 8px; opacity: 0.9; }</style>
+.legend { text-align: left; line-height: 18px; color: #555; } .legend i { width: 18px; height: 18px; float: left; margin-right: 8px; opacity: 0.85; }</style>
 <div id="map" style="width: 720px; height: 600px"></div>
 <script>
 var map = L.map('map', 
 {
-center: [32.78078, -117.17587],
+center: [32.78078, -117.17087],
 zoom: 12
 });
 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(map);
@@ -32,7 +32,7 @@ function myStyle(feature) {
         weight: 1,
         opacity: 0.15,
 		color: 'white',
-		fillOpacity: 0.65
+		fillOpacity: 0.85
     };
 }
 
@@ -40,7 +40,8 @@ var geoJsonLayer = L.geoJson(geojson, {style: myStyle}).addTo(map);
 
 L.geoJson(geojson, {
   onEachFeature: function(feature,layer) {
-    layer.bindPopup(feature.properties.TRACTCE + feature.properties.NAME);
+    // layer.bindPopup(feature.properties.TRACTCE + feature.properties.NAME);
+    layer.bindPopup(feature.properties.MEDIANYEARBUILT.toString());
 	}
 }).addTo(map);
 
@@ -57,10 +58,10 @@ map.attributionControl.addAttribution('Housing data &copy; <a href="http://censu
 
 		for (var i = 0; i < grades.length; i++) {
 			from = grades[i];
-			to = grades[i + 1];
+			to = grades[i + 1] - 1;
 
 			labels.push(
-				'<i style="background:' + color(from + 1) + '"></i> ' +
+				'<i style="background:' + color(from) + '"></i> ' +
 				from + (to ? '&ndash;' + to : '+'));
 		}
 
