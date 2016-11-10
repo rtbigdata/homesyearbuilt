@@ -1,5 +1,5 @@
 <html>
-<head><title>Leaflet.js Essentials</title>
+<head><title>Buffalo Real Estate Median Year Built</title>
 <link rel="stylesheet" href="leaflet.css" />
 </head>
 <body>
@@ -38,7 +38,7 @@ var geoJsonLayer = L.geoJson(geojson, {style: myStyle}).addTo(map);
 
 L.geoJson(geojson, {
   onEachFeature: function(feature,layer) {
-    layer.bindPopup(feature.properties.TRACTCE + feature.properties.NAME);
+    layer.bindPopup(feature.properties.MEDIANYEARBUILT.toString());
 	}
 }).addTo(map);
 
