@@ -38,7 +38,7 @@ var geoJsonLayer = L.geoJson(geojson, {style: myStyle}).addTo(map);
 
 L.geoJson(geojson, {
   onEachFeature: function(feature,layer) {
-    layer.bindPopup(feature.properties.MEDIANYEARBUILT.toString());
+    layer.bindPopup(feature.properties.GEOID + ' ' + feature.properties.MEDIANYEARBUILT.toString());
 	}
 }).addTo(map);
 
